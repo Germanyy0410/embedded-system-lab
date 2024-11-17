@@ -112,69 +112,69 @@ void box_rec(uint8_t box_idx, uint16_t x, uint16_t y, uint16_t width, uint16_t h
  */
 void init_traffic_light(void) {
 /* ============================ START horizontal ============================ */
-	traffic_NS.x 					= 40;
-	traffic_NS.y 					= 60;
-	traffic_NS.width 			= 120;
-	traffic_NS.height 		= 40;
-	traffic_NS.COLOR_FILL = BLACK;
+	traffic_horizontal.x 					= 40;
+	traffic_horizontal.y 					= 60;
+	traffic_horizontal.width 			= 120;
+	traffic_horizontal.height 		= 40;
+	traffic_horizontal.COLOR_FILL = BLACK;
 
 	//draw a black box
 	lcd_DrawRectangle(
-		traffic_NS.x, traffic_NS.y,
-		traffic_NS.x + traffic_NS.width, traffic_NS.y + traffic_NS.height,
-		traffic_NS.COLOR_FILL
+		traffic_horizontal.x, traffic_horizontal.y,
+		traffic_horizontal.x + traffic_horizontal.width, traffic_horizontal.y + traffic_horizontal.height,
+		traffic_horizontal.COLOR_FILL
 	);
 	lcd_Fill(
-		traffic_NS.x, traffic_NS.y,
-		traffic_NS.x + traffic_NS.width, traffic_NS.y + traffic_NS.height,
-		traffic_NS.COLOR_FILL
+		traffic_horizontal.x, traffic_horizontal.y,
+		traffic_horizontal.x + traffic_horizontal.width, traffic_horizontal.y + traffic_horizontal.height,
+		traffic_horizontal.COLOR_FILL
 	);
 
 	//calculate center and radius of each light inside above black box
-	traffic_NS.red.center_x 		= traffic_NS.x + traffic_NS.width / 6;
-	traffic_NS.yellow.center_x 	= traffic_NS.x + 3 * traffic_NS.width / 6;
-	traffic_NS.green.center_x 	= traffic_NS.x + 5 * traffic_NS.width / 6;
+	traffic_horizontal.red.center_x 		= traffic_horizontal.x + traffic_horizontal.width / 6;
+	traffic_horizontal.yellow.center_x 	= traffic_horizontal.x + 3 * traffic_horizontal.width / 6;
+	traffic_horizontal.green.center_x 	= traffic_horizontal.x + 5 * traffic_horizontal.width / 6;
 
-	traffic_NS.red.center_y 		= traffic_NS.y + traffic_NS.height / 2;
-	traffic_NS.yellow.center_y 	= traffic_NS.red.center_y;
-	traffic_NS.green.center_y 	= traffic_NS.red.center_y;
+	traffic_horizontal.red.center_y 		= traffic_horizontal.y + traffic_horizontal.height / 2;
+	traffic_horizontal.yellow.center_y 	= traffic_horizontal.red.center_y;
+	traffic_horizontal.green.center_y 	= traffic_horizontal.red.center_y;
 
-	traffic_NS.red.radius 			= (traffic_NS.height / 2)  * 90 / 100 ;
-	traffic_NS.yellow.radius 		= traffic_NS.red.radius;
-	traffic_NS.green.radius 		= traffic_NS.red.radius;
+	traffic_horizontal.red.radius 			= (traffic_horizontal.height / 2)  * 90 / 100 ;
+	traffic_horizontal.yellow.radius 		= traffic_horizontal.red.radius;
+	traffic_horizontal.green.radius 		= traffic_horizontal.red.radius;
 
-	traffic_NS.red.is_fill = 1;
+	traffic_horizontal.red.is_fill = 1;
 
-	traffic_NS.red.COLOR_FILL 		= (traffic_NS.red.is_fill) ? RED : BLACK;
-	traffic_NS.yellow.COLOR_FILL 	= (traffic_NS.yellow.is_fill) ? YELLOW : BLACK;
-	traffic_NS.green.COLOR_FILL 	= (traffic_NS.green.is_fill) ? GREEN : BLACK;
+	traffic_horizontal.red.COLOR_FILL 		= (traffic_horizontal.red.is_fill) ? RED : BLACK;
+	traffic_horizontal.yellow.COLOR_FILL 	= (traffic_horizontal.yellow.is_fill) ? YELLOW : BLACK;
+	traffic_horizontal.green.COLOR_FILL 	= (traffic_horizontal.green.is_fill) ? GREEN : BLACK;
 
 	lcd_DrawCircle(
-		traffic_NS.red.center_x, traffic_NS.red.center_y, 
-		traffic_NS.red.COLOR_FILL, traffic_NS.red.radius, traffic_NS.red.is_fill
+		traffic_horizontal.red.center_x, traffic_horizontal.red.center_y,
+		traffic_horizontal.red.COLOR_FILL, traffic_horizontal.red.radius, traffic_horizontal.red.is_fill
 	);
 	lcd_DrawCircle(
-		traffic_NS.yellow.center_x, traffic_NS.yellow.center_y, 
-		traffic_NS.yellow.COLOR_FILL, traffic_NS.yellow.radius, traffic_NS.yellow.is_fill
+		traffic_horizontal.yellow.center_x, traffic_horizontal.yellow.center_y,
+		traffic_horizontal.yellow.COLOR_FILL, traffic_horizontal.yellow.radius, traffic_horizontal.yellow.is_fill
 	);
 	lcd_DrawCircle(
-		traffic_NS.green.center_x, traffic_NS.green.center_y, 
-		traffic_NS.green.COLOR_FILL, traffic_NS.green.radius, traffic_NS.green.is_fill
+		traffic_horizontal.green.center_x, traffic_horizontal.green.center_y,
+		traffic_horizontal.green.COLOR_FILL, traffic_horizontal.green.radius, traffic_horizontal.green.is_fill
 	);
 
 	//init num
-	traffic_NS.num.len 		= 2;
-	traffic_NS.num.fc 		= BLACK;
-	traffic_NS.num.bc 		= WHITE;
-	traffic_NS.num.sizey 	= 32;
-	traffic_NS.num.x 			= traffic_NS.x - traffic_NS.num.len * traffic_NS.num.sizey / 2;
-	traffic_NS.num.y 			= traffic_NS.y;
-	traffic_NS.num.num 		= 10;
+	traffic_horizontal.num.len 		= 2;
+	traffic_horizontal.num.fc 		= BLACK;
+	traffic_horizontal.num.bc 		= WHITE;
+	traffic_horizontal.num.sizey 	= 32;
+	traffic_horizontal.num.x 			= traffic_horizontal.x - traffic_horizontal.num.len * traffic_horizontal.num.sizey / 2;
+	traffic_horizontal.num.y 			= traffic_horizontal.y;
+	traffic_horizontal.num.num 		= 10;
 	lcd_ShowIntNum(
-		traffic_NS.num.x, traffic_NS.num.y, 
-		traffic_NS.num.num, traffic_NS.num.len, 
-		traffic_NS.num.fc, traffic_NS.num.bc, 
-		traffic_NS.num.sizey
+		traffic_horizontal.num.x, traffic_horizontal.num.y,
+		traffic_horizontal.num.num, traffic_horizontal.num.len,
+		traffic_horizontal.num.fc, traffic_horizontal.num.bc,
+		traffic_horizontal.num.sizey
 	);
 /* ============================= END horizontal ============================= */
 
@@ -189,12 +189,12 @@ void init_traffic_light(void) {
 	// draw a black box
 	lcd_DrawRectangle(
 		traffic_vertical.x, traffic_vertical.y,
-		traffic_vertical.x + traffic_vertical.width, traffic_vertical.y + traffic_vertical.height, 
+		traffic_vertical.x + traffic_vertical.width, traffic_vertical.y + traffic_vertical.height,
 		traffic_vertical.COLOR_FILL
 	);
 	lcd_Fill(
-		traffic_vertical.x, traffic_vertical.y, 
-		traffic_vertical.x + traffic_vertical.width, traffic_vertical.y + traffic_vertical.height, 
+		traffic_vertical.x, traffic_vertical.y,
+		traffic_vertical.x + traffic_vertical.width, traffic_vertical.y + traffic_vertical.height,
 		traffic_vertical.COLOR_FILL
 	);
 
