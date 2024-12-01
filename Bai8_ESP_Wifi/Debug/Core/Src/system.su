@@ -1,0 +1,2 @@
+system.c:13:6:system_init	24	static
+system.c:26:6:system_loop	24	static
