@@ -39,7 +39,7 @@ uint8_t compile_cmd(double *cmd_data) {
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883
 #define AIO_USERNAME    "germanyy0410"
-#define AIO_KEY         "aio_ioGC53iJwbKJ9lXqMrcPer1wydyK"
+#define AIO_KEY         "..."
 // setup MQTT
 WiFiClient client;
 Adafruit_MQTT_Client mqtt(&client , AIO_SERVER , AIO_SERVERPORT , AIO_USERNAME , AIO_KEY);
@@ -77,7 +77,7 @@ int state = 0;
 void loop() {
   // receive packet
   mqtt.processPackets (1);
-  double temp_data = 0;  
+  double temp_data = 0;
   uint8_t success = 0;
   if (Serial.available()) {
     int msg = Serial.read();
